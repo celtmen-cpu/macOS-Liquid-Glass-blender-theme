@@ -6,9 +6,7 @@
   <title>My Blender Resources</title>
   <link rel="icon" href="https://images.icon-icons.com/4029/PNG/512/twitter_x_new_logo_x_rounded_icon_256078.png" type="image/png">
   <style>
-    /* Reset */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f0f2f5;
@@ -18,39 +16,12 @@
       flex-direction: column;
       align-items: center;
     }
+    h1 { text-align: center; margin-bottom: 20px; font-size: 2em; color: #34495e; }
+    h2 { width: 100%; font-size: 1.4em; color: #34495e; margin: 30px 0 15px; border-bottom: 2px solid #2980b9; padding-bottom: 5px; }
+    p { margin: 10px 0 20px; text-align: center; }
+    a { text-decoration: none; color: #2980b9; font-weight: bold; transition: 0.3s; }
+    a:hover { color: #1abc9c; }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 2em;
-      color: #34495e;
-    }
-
-    h2 {
-      width: 100%;
-      font-size: 1.4em;
-      color: #34495e;
-      margin: 30px 0 15px;
-      border-bottom: 2px solid #2980b9;
-      padding-bottom: 5px;
-    }
-
-    p {
-      margin: 10px 0 20px;
-      text-align: center;
-    }
-
-    a {
-      text-decoration: none;
-      color: #2980b9;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    a:hover {
-      color: #1abc9c;
-    }
-
-    /* Card style for Liquid Glass */
     ul {
       list-style: none;
       width: 100%;
@@ -59,7 +30,6 @@
       flex-direction: column;
       gap: 15px;
     }
-
     li {
       background: rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(10px);
@@ -72,18 +42,8 @@
       transition: 0.3s;
       flex-wrap: wrap;
     }
-
-    li:hover {
-      background: rgba(255, 255, 255, 0.35);
-      transform: translateY(-2px);
-    }
-
-    .addon-name {
-      font-size: 1em;
-      margin-bottom: 5px;
-      flex: 1 1 60%;
-    }
-
+    li:hover { background: rgba(255, 255, 255, 0.35); transform: translateY(-2px); }
+    .addon-name { font-size: 1em; margin-bottom: 5px; flex: 1 1 60%; }
     .download-btn {
       background: #2980b9;
       color: #fff;
@@ -91,73 +51,124 @@
       border-radius: 8px;
       transition: 0.3s;
     }
+    .download-btn:hover { background: #1abc9c; }
 
-    .download-btn:hover {
-      background: #1abc9c;
-    }
+    .social { display: flex; align-items: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+    .social img { width: 30px; height: auto; }
 
-    .social {
+    /* Review form */
+    #reviewForm {
+      width: 100%;
+      max-width: 600px;
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 10px;
-      margin-top: 15px;
-      flex-wrap: wrap;
+      margin-top: 20px;
     }
-
-    .social img {
-      width: 30px;
-      height: auto;
+    #reviewForm input, #reviewForm textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
     }
+    #reviewForm button {
+      width: fit-content;
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: none;
+      background: #2980b9;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    #reviewForm button:hover { background: #1abc9c; }
+    #status { margin-top: 10px; text-align: center; font-weight: bold; }
 
-    /* Responsive */
     @media (max-width: 600px) {
-      li {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .addon-name {
-        flex: 1 1 100%;
-        margin-bottom: 10px;
-      }
+      li { flex-direction: column; align-items: flex-start; }
+      .addon-name { flex: 1 1 100%; margin-bottom: 10px; }
     }
   </style>
 </head>
 <body>
 
-  <h1>My Blender Resources</h1>
+<h1>My Blender Resources</h1>
+<p>Download my Blender themes and addons below.</p>
 
-  <p>Download my Blender themes and addons below.</p>
+<h2>Themes</h2>
+<ul>
+  <li>
+    <div class="addon-name">MacOS Dark Liquid Glass Theme</div>
+    <a href="versions/themes/liquid_glass_theme_1.0.zip" class="download-btn" download>Download</a>
+  </li>
+</ul>
 
-  <h2>Themes</h2>
-  <ul>
-    <li>
-      <div class="addon-name">MacOS Dark Liquid Glass Theme</div>
-      <a href="versions/themes/liquid_glass_theme_1.0.zip" class="download-btn" download>Download</a>
-    </li>
-  </ul>
+<h2>Addons</h2>
+<ul>
+  <li>
+    <div class="addon-name">Dimension presets for social networks</div>
+    <a href="versions/addons/dimensions_presets.zip" class="download-btn" download>Download</a>
+  </li>
+</ul>
 
-  <h2>Addons</h2>
-  <ul>
-    <li>
-      <div class="addon-name">Dimension presets for social networks</div>
-      <a href="versions/addons/dimensions_presets.zip" class="download-btn" download>Download</a>
-    </li>
-  </ul>
+<h2>Installation</h2>
+<p>Follow the Blender installation instructions:</p>
+<p>
+  <a href="https://docs.blender.org/manual/en/latest/editors/preferences/addons.html" target="_blank" class="download-btn">
+    Blender Installation Guide
+  </a>
+</p>
 
-  <h2>Installation</h2>
-  <p>Follow the Blender installation instructions:</p>
-  <p>
-    <a href="https://docs.blender.org/manual/en/latest/editors/preferences/addons.html" target="_blank" class="download-btn">
-      Blender Installation Guide
-    </a>
-  </p>
+<h2>Leave a Review</h2>
+<form id="reviewForm">
+  <input type="text" id="addonName" placeholder="Addon or Theme Name" required>
+  <textarea id="reviewMessage" placeholder="Your comment" rows="5" required></textarea>
+  <button type="submit">Send Review</button>
+  <p id="status"></p>
+</form>
 
-  <h2>My Social Networks</h2>
-  <div class="social">
-    <img src="https://images.icon-icons.com/4029/PNG/512/twitter_x_new_logo_x_rounded_icon_256078.png" alt="X Logo">
-    <a href="https://x.com/hvk_celtmen?s=21" target="_blank">My X profile</a>
-  </div>
+<h2>My Social Networks</h2>
+<div class="social">
+  <img src="https://images.icon-icons.com/4029/PNG/512/twitter_x_new_logo_x_rounded_icon_256078.png" alt="X Logo">
+  <a href="https://x.com/hvk_celtmen?s=21" target="_blank">My X profile</a>
+</div>
+
+<script>
+const webhookURL = "https://discord.com/api/webhooks/1482483044580589609/nk30RV6AZMga1uvbu7wlbSAbAlkkHrYQDrLLshkOjniPDzQ941L2mQrP1TzqGmynS5SY";
+
+document.getElementById("reviewForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const addonName = document.getElementById("addonName").value;
+  const message = document.getElementById("reviewMessage").value;
+
+  fetch(webhookURL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      content: `**${addonName}** received a review:\n${message}`
+    })
+  })
+  .then(res => {
+    if(res.ok){
+      document.getElementById("status").innerText = "✅ Review sent!";
+      document.getElementById("reviewForm").reset();
+    } else {
+      document.getElementById("status").innerText = "❌ Failed to send review.";
+    }
+  })
+  .catch(err => {
+    document.getElementById("status").innerText = "❌ Error sending review.";
+    console.error(err);
+  });
+});
+</script>
 
 </body>
 </html>
