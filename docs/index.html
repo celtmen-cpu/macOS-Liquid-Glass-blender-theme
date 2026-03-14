@@ -1,34 +1,119 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MacOS Liquid Glass blender theme</title>
+  <title>MacOS Liquid Glass Blender Theme</title>
   <style>
-    body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; }
-    h1 { color: #2c3e50; }
-    ul { list-style: none; padding: 0; }
-    li { margin-bottom: 10px; }
-    a { text-decoration: none; color: #2980b9; }
-    a:hover { text-decoration: underline; }
+    /* Body */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f5f7fa;
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+
+    /* Headings */
+    h1 {
+      color: #34495e;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 1.4em;
+      color: #34495e;
+      margin-top: 40px;
+      border-bottom: 2px solid #2980b9;
+      padding-bottom: 5px;
+    }
+
+    /* Links */
+    a {
+      text-decoration: none;
+      color: #2980b9;
+      transition: 0.3s;
+    }
+    a:hover {
+      text-decoration: underline;
+      color: #1abc9c;
+    }
+
+    /* Versions list */
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    li {
+      background: #ecf0f1;
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+    li:hover {
+      background: #d1e7ff;
+    }
+
+    /* Download buttons */
+    li a {
+      font-weight: bold;
+    }
+
+    /* Instructions link */
+    .instructions {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: #2980b9;
+      color: #fff;
+      border-radius: 6px;
+    }
+    .instructions:hover {
+      background: #1abc9c;
+    }
+
+    /* Social links */
+    .social {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .social img {
+      width: 30px;
+      height: auto;
+    }
   </style>
 </head>
 <body>
-  <h1>MacOS Liquid Glass blender theme – Versions</h1>
-  <p>Choose a version to download it ! :</p>
+
+  <h1>MacOS Liquid Glass Blender Theme – Versions</h1>
+
+  <p style="text-align:center;">Choose a version to download it:</p>
+
   <ul>
     <li><a href="versions/liquid_glass_theme_1.0.zip" download>Version 1.0</a></li>
+    <!-- You can add more versions here like:
+    <li><a href="versions/liquid_glass_theme_2.0.zip" download>Version 2.0</a></li>
+    -->
   </ul>
-  <p>To install a theme on blender follow the instructions!  :</p>
-  <a href="https://docs.blender.org/manual/fr/dev/editors/preferences/themes.html" target="_blank">https://docs.blender.org/manual/fr/dev/editors/preferences/themes.html</a>
-  <h2 style="font-size: 1.2em; color: #2c3e50; margin-top: 30px;">My Social Networks</h2>
 
-<p style="display: flex; align-items: center; gap: 8px;">
-  <img src="https://images.icon-icons.com/4029/PNG/512/twitter_x_new_logo_x_rounded_icon_256078.png" 
-       alt="X Logo" style="width:30px; height:auto;">
-  <a href="https://x.com/hvk_celtmen?s=21" target="_blank" 
-     style="text-decoration:none; color:#1DA1F2; font-weight:bold;">
-    My X profile
-  </a>
-</p>
+  <p style="text-align:center;">To install a theme on Blender, follow the instructions:</p>
+  <p style="text-align:center;">
+    <a href="https://docs.blender.org/manual/fr/dev/editors/preferences/themes.html" target="_blank" class="instructions">
+      Blender Theme Installation Guide
+    </a>
+  </p>
+
+  <h2>My Social Networks</h2>
+  <div class="social">
+    <img src="https://images.icon-icons.com/4029/PNG/512/twitter_x_new_logo_x_rounded_icon_256078.png" alt="X Logo">
+    <a href="https://x.com/hvk_celtmen?s=21" target="_blank">My X profile</a>
+  </div>
+
 </body>
 </html>
