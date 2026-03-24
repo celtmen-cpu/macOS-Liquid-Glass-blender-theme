@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Blender Resources</title>
   <link rel="icon" href="https://images.icon-icons.com/4029/PNG/512/twitter_x_new_logo_x_rounded_icon_256078.png" type="image/png">
   <style>
-    /* Ton CSS existant */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; color: #2c3e50; padding: 20px; display: flex; flex-direction: column; align-items: center; }
     h1 { text-align: center; margin-bottom: 20px; font-size: 2em; color: #34495e; }
@@ -15,12 +14,12 @@
     a { text-decoration: none; color: #2980b9; font-weight: bold; transition: 0.3s; }
     ul { list-style: none; width: 100%; padding: 0; display: flex; flex-direction: column; gap: 15px; }
     li { background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(10px); border-radius: 15px; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.1); transition: 0.3s; }
-    .addon-name { font-size: 1em; flex: 1 1 60%; }
+    .addon-name { font-size: 1em; }
     .download-btn { background: #2980b9; color: #fff; padding: 8px 12px; border-radius: 8px; transition: 0.3s; cursor: pointer; border: none; }
     .download-btn:hover { background: #1abc9c; }
-    #reviewForm { width: 100%; max-width: 600px; background: rgba(255,255,255,0.25); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+    #reviewForm { width: 100%; max-width: 600px; background: rgba(255,255,255,0.25); border-radius: 15px; padding: 20px; display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
     #reviewForm input, #reviewForm textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
-    #reviewForm button { padding: 10px 15px; border-radius: 8px; border: none; background: #2980b9; color: white; font-weight: bold; cursor: pointer; }
+    #reviewForm button { padding: 10px 15px; border-radius: 8px; border: none; background: #2980b9; color: white; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -31,7 +30,7 @@
 <ul>
   <li>
     <div class="addon-name">MacOS Dark Liquid Glass Theme</div>
-    <a href="versions/theme/liquid_glass_theme_1.0.zip" class="download-btn" data-name="MacOS Dark Liquid Glass Theme" download>Download</a>
+    <a href="versions/theme/liquid_glass_theme_1.0.zip" class="download-btn" onclick="sendDownloadAlert(event, 'MacOS Dark Liquid Glass Theme')">Download</a>
   </li>
 </ul>
 
@@ -39,7 +38,7 @@
 <ul>
   <li>
     <div class="addon-name">Dimension presets for social networks</div>
-    <a href="versions/addons/dimensions_presets.zip" class="download-btn" data-name="Dimension presets for social networks" download>Download</a>
+    <a href="versions/addons/dimensions_presets.zip" class="download-btn" onclick="sendDownloadAlert(event, 'Dimension presets for social networks')">Download</a>
   </li>
 </ul>
 
@@ -52,42 +51,46 @@
 </form>
 
 <script>
-  // Configuration du Webhook
-  const webhookURL = "https://discord.com/api/webhooks/1485923983558705164/H5fJ7BT-xKHEQc9g1TeDt1Os04QMQ3g-rR4sJVD4kg0yFHv_FSSW9gK6pDJxNYyQ4bC5";
+const webhookURL = "https://discord.com/api/webhooks/1485923983558705164/H5fJ7BT-xKHEQc9g1TeDt1Os04QMQ3g-rR4sJVD4kg0yFHv_FSSW9gK6pDJxNYyQ4bC5";
 
-  // Fonction universelle d'envoi
-  async function notifyDiscord(message) {
-    try {
-      await fetch(webhookURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: message })
-      });
-    } catch (err) {
-      console.error("Erreur d'envoi Discord:", err);
-    }
+// Fonction pour envoyer la requête POST
+async function postToDiscord(content) {
+  try {
+    await fetch(webhookURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: content })
+    });
+  } catch (error) {
+    console.error('Erreur:', error);
   }
+}
 
-  // --- Écouteur pour les TÉLÉCHARGEMENTS ---
-  document.addEventListener('click', function(e) {
-    // Si l'élément cliqué est un bouton de téléchargement
-    if (e.target && e.target.classList.contains('download-btn')) {
-      const fileName = e.target.getAttribute('data-name') || "Fichier inconnu";
-      notifyDiscord(`🚀 **Nouveau téléchargement** : ${fileName}`);
-    }
-  });
+// Gestion des téléchargements
+function sendDownloadAlert(event, name) {
+  // Empêche le téléchargement immédiat pour laisser le temps au script de s'exécuter
+  event.preventDefault();
+  const url = event.currentTarget.href;
 
-  // --- Écouteur pour le FORMULAIRE ---
-  document.getElementById("reviewForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const name = document.getElementById("addonName").value;
-    const msg = document.getElementById("reviewMessage").value;
+  postToDiscord(`📥 **Téléchargement lancé** : ${name}`);
 
-    notifyDiscord(`⭐ **Nouvel avis sur ${name}** :\n"${msg}"`);
-    
-    document.getElementById("status").innerText = "✅ Merci ! Envoyé au Discord.";
-    this.reset();
-  });
+  // Lance le téléchargement après un court délai (200ms)
+  setTimeout(() => {
+    window.location.href = url;
+  }, 200);
+}
+
+// Gestion du formulaire de review
+document.getElementById("reviewForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const addon = document.getElementById("addonName").value;
+  const message = document.getElementById("reviewMessage").value;
+
+  postToDiscord(`⭐ **Nouvel avis sur ${addon}** :\n${message}`);
+
+  document.getElementById("status").innerText = "✅ Review envoyée !";
+  this.reset();
+});
 </script>
 
 </body>
