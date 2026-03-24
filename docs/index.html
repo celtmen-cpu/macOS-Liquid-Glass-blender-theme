@@ -1,156 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Blender Resources</title>
+  <title>Blender Resources | Digital Assets</title>
   <link rel="icon" href="https://images.icon-icons.com/4029/PNG/512/twitter_x_new_logo_x_rounded_icon_256078.png" type="image/png">
+  
   <style>
+    :root {
+      --bg: #0b0f1a;
+      --card: rgba(23, 32, 53, 0.8);
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --success: #10b981;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f0f2f5;
-      color: #2c3e50;
-      padding: 20px;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      background-image: radial-gradient(circle at 50% -20%, #1e293b, #0b0f1a);
+      color: var(--text);
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 60px 20px;
+      min-height: 100vh;
     }
-    h1 { text-align: center; margin-bottom: 20px; font-size: 2em; color: #34495e; }
-    h2 { width: 100%; font-size: 1.4em; color: #34495e; margin: 30px 0 15px; border-bottom: 2px solid #2980b9; padding-bottom: 5px; }
-    p { margin: 10px 0 20px; text-align: center; }
-    a { text-decoration: none; color: #2980b9; font-weight: bold; transition: 0.3s; }
-    a:hover { color: #1abc9c; }
 
-    ul { list-style: none; width: 100%; padding: 0; display: flex; flex-direction: column; gap: 15px; }
-    li {
-      background: rgba(255, 255, 255, 0.25);
+    .container { width: 100%; max-width: 750px; }
+
+    header { text-align: center; margin-bottom: 50px; }
+    h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; color: #fff; }
+    .tagline { color: var(--text-muted); font-size: 1.1rem; }
+
+    h2 { 
+      font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; 
+      color: var(--accent); margin: 40px 0 20px; display: flex; align-items: center; gap: 15px;
+    }
+    h2::after { content: ""; height: 1px; flex: 1; background: var(--border); }
+
+    .resource-list { display: flex; flex-direction: column; gap: 15px; }
+
+    .card {
+      background: var(--card);
       backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 15px 20px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      transition: 0.3s;
+      transition: all 0.3s ease;
     }
-    .addon-name { font-size: 1em; font-weight: bold; }
-    .download-btn {
-      background: #2980b9;
-      color: #fff !important;
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      border: none;
+    .card:hover { 
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
     }
 
-    #reviewForm {
-      width: 100%; max-width: 600px;
-      background: rgba(255,255,255,0.25);
-      border-radius: 15px; padding: 20px;
-      display: flex; flex-direction: column; gap: 10px; margin-top: 20px;
+    .info h3 { font-size: 1.15rem; margin-bottom: 5px; }
+    .info p { font-size: 0.85rem; color: var(--text-muted); }
+
+    .dl-btn {
+      background: var(--accent);
+      color: white !important;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: 0.2s;
+      border: none;
+      cursor: pointer;
     }
-    #reviewForm input, #reviewForm textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; }
-    #reviewForm button { padding: 10px 15px; border-radius: 8px; border: none; background: #2980b9; color: white; cursor: pointer; }
-    #status { margin-top: 10px; text-align: center; font-weight: bold; }
+    .dl-btn:hover { background: var(--accent-hover); transform: scale(1.05); }
+
+    /* Formulaire */
+    form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px;
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    input, textarea {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.2s;
+    }
+    input:focus, textarea:focus { border-color: var(--accent); }
+    
+    .submit-btn {
+      background: var(--success);
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 10px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .submit-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    #status { text-align: center; margin-top: 10px; font-weight: 600; font-size: 0.9rem; }
+
+    @media (max-width: 600px) {
+      .card { flex-direction: column; text-align: center; gap: 20px; }
+      .dl-btn { width: 100%; }
+    }
   </style>
 </head>
 <body>
 
-<h1>My Blender Resources</h1>
+  <div class="container">
+    <header>
+      <h1>Blender Resources</h1>
+      <p class="tagline">Boostez votre créativité avec mes thèmes et addons.</p>
+    </header>
 
-<h2>Themes</h2>
-<ul>
-  <li>
-    <div class="addon-name">MacOS Dark Liquid Glass Theme</div>
-    <a href="versions/theme/liquid_glass_theme_1.0.zip" class="download-btn" onclick="handleDownload(event, 'MacOS Dark Liquid Glass Theme')">Download</a>
-  </li>
-</ul>
+    <h2>🎨 Thèmes</h2>
+    <div class="resource-list">
+      <div class="card">
+        <div class="info">
+          <h3>MacOS Dark Liquid Glass</h3>
+          <p>Format: .zip | Version: 1.0</p>
+        </div>
+        <a href="versions/theme/liquid_glass_theme_1.0.zip" class="dl-btn" onclick="handleDownload(event, '🎨 Thème: MacOS Dark Liquid Glass')">Download</a>
+      </div>
+    </div>
 
-<h2>Addons</h2>
-<ul>
-  <li>
-    <div class="addon-name">Dimension presets for social networks</div>
-    <a href="versions/addons/dimensions_presets.zip" class="download-btn" onclick="handleDownload(event, 'Dimension presets for social networks')">Download</a>
-  </li>
-</ul>
+    <h2>⚙️ Addons</h2>
+    <div class="resource-list">
+      <div class="card">
+        <div class="info">
+          <h3>Social Network Presets</h3>
+          <p>Format: .zip | Pour Blender 3.6+</p>
+        </div>
+        <a href="versions/addons/dimensions_presets.zip" class="dl-btn" onclick="handleDownload(event, '⚙️ Addon: Social Network Presets')">Download</a>
+      </div>
+    </div>
 
-<h2>Leave a Review</h2>
-<form id="feedbackForm">
-  <input type="text" id="addonName" placeholder="Addon or Theme Name" required>
-  <textarea id="reviewMessage" placeholder="Your comment" rows="5" required></textarea>
-  <button type="submit">Send Review</button>
-  <p id="status"></p>
-</form>
+    <h2>💬 Feedback</h2>
+    <form id="feedbackForm">
+      <input type="text" id="itemName" placeholder="Nom du produit testé" required>
+      <textarea id="itemReview" rows="4" placeholder="Votre avis ou signalement de bug..." required></textarea>
+      <button type="submit" class="submit-btn">Envoyer mon retour</button>
+      <p id="status"></p>
+    </form>
+  </div>
 
-<script>
-  // Configuration calquée sur ton script Spy Game
-  const CONFIG = {
-    webhook: "https://discord.com/api/webhooks/1485923983558705164/H5fJ7BT-xKHEQc9g1TeDt1Os04QMQ3g-rR4sJVD4kg0yFHv_FSSW9gK6pDJxNYyQ4bC5"
-  };
+  <script>
+    const CONFIG = {
+      webhook: "https://discord.com/api/webhooks/1485923983558705164/H5fJ7BT-xKHEQc9g1TeDt1Os04QMQ3g-rR4sJVD4kg0yFHv_FSSW9gK6pDJxNYyQ4bC5"
+    };
 
-  /**
-   * Fonction principale d'envoi vers Discord
-   */
-  async function postToDiscord(data) {
-    try {
-      await fetch(CONFIG.webhook, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-    } catch (e) {
-      console.error("Discord Webhook Error:", e);
+    // Fonction d'envoi POST (Utilisée pour les clics et le formulaire)
+    async function sendToDiscord(payload) {
+      try {
+        await fetch(CONFIG.webhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.error("Erreur d'envoi Webhook:", err);
+      }
     }
-  }
 
-  /**
-   * Gestion du clic sur les téléchargements
-   */
-  async function handleDownload(event, itemName) {
-    event.preventDefault(); // STOP le téléchargement immédiat
-    const downloadUrl = event.currentTarget.href;
+    // Gestion des téléchargements
+    async function handleDownload(event, resourceName) {
+      event.preventDefault();
+      const targetUrl = event.currentTarget.href;
 
-    // Envoi du message (Format Embed pour plus de classe comme dans Spy Game)
-    await postToDiscord({
-      embeds: [{
-        title: "📥 Nouveau Téléchargement",
-        description: `L'utilisateur a téléchargé : **${itemName}**`,
-        color: 3447003, // Bleu
-        timestamp: new Date()
-      }]
-    });
+      // Envoi du log au Discord sous forme d'Embed (plus pro)
+      await sendToDiscord({
+        embeds: [{
+          title: "🚀 Nouveau Téléchargement",
+          description: `Ressource : **${resourceName}**`,
+          color: 3869830, // Bleu
+          timestamp: new Date()
+        }]
+      });
 
-    // On déclenche le téléchargement après un mini délai
-    setTimeout(() => {
-      window.location.href = downloadUrl;
-    }, 150);
-  }
+      // Délai pour s'assurer que la requête est partie
+      setTimeout(() => { window.location.href = targetUrl; }, 150);
+    }
 
-  /**
-   * Gestion du formulaire de feedback
-   */
-  document.getElementById('feedbackForm').onsubmit = async (e) => {
-    e.preventDefault();
-    const name = document.getElementById("addonName").value;
-    const message = document.getElementById("reviewMessage").value;
+    // Gestion du formulaire de retour
+    document.getElementById('feedbackForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const status = document.getElementById('status');
+      const name = document.getElementById('itemName').value;
+      const review = document.getElementById('itemReview').value;
 
-    await postToDiscord({
-      embeds: [{
-        title: "⭐ Nouvel Avis Client",
-        fields: [
-          { name: "Ressource", value: name, inline: true },
-          { name: "Commentaire", value: message }
-        ],
-        color: 15844367, // Or/Jaune
-        timestamp: new Date()
-      }]
-    });
+      status.style.color = "var(--accent)";
+      status.innerText = "Transmission en cours...";
 
-    document.getElementById("status").innerText = "✅ Merci ! Avis envoyé.";
-    e.target.reset();
-  };
-</script>
+      await sendToDiscord({
+        embeds: [{
+          title: "⭐ Nouveau Feedback Reçu",
+          fields: [
+            { name: "Produit", value: name, inline: true },
+            { name: "Commentaire", value: review }
+          ],
+          color: 16766720, // Or
+          timestamp: new Date()
+        }]
+      });
+
+      status.style.color = "var(--success)";
+      status.innerText = "✅ Merci ! Votre avis a été envoyé.";
+      e.target.reset();
+    };
+  </script>
 
 </body>
 </html>
