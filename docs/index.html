@@ -90,6 +90,8 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
+      width: 100%;
+      max-width: 750px;
     }
     input, textarea {
       background: rgba(0, 0, 0, 0.2);
@@ -102,6 +104,8 @@
       transition: 0.2s;
     }
     input:focus, textarea:focus { border-color: var(--accent); }
+
+    textarea { resize: vertical; min-height: 100px; }
     
     .submit-btn {
       background: var(--success);
@@ -151,12 +155,15 @@
         </div>
         <a href="versions/addons/dimensions_presets.zip" class="dl-btn" onclick="handleDownload(event, '⚙️ Addon: Social Network Presets')">Download</a>
       </div>
-      <h3>Social Network Presets</h3>
+
+      <div class="card">
+        <div class="info">
+          <h3>Spider-Man Web Shoot</h3>
           <p>Format: .zip | Pour Blender 3.6+</p>
         </div>
-        <a href="versions/addons/SpiderManWebShoot.zip" class="dl-btn" onclick="handleDownload(event, '⚙️ Addon: SpiderMan web shooting geometry node')">Download</a>
+        <a href="versions/addons/SpiderManWebShoot.zip" class="dl-btn" onclick="handleDownload(event, '⚙️ Addon: SpiderMan Web Shoot')">Download</a>
       </div>  
-  </div>
+    </div>
 
     <h2>💬 Feedback</h2>
     <form id="feedbackForm">
@@ -172,7 +179,6 @@
       webhook: "https://discord.com/api/webhooks/1485923983558705164/H5fJ7BT-xKHEQc9g1TeDt1Os04QMQ3g-rR4sJVD4kg0yFHv_FSSW9gK6pDJxNYyQ4bC5"
     };
 
-    // Fonction d'envoi POST (Utilisée pour les clics et le formulaire)
     async function sendToDiscord(payload) {
       try {
         await fetch(CONFIG.webhook, {
@@ -185,26 +191,22 @@
       }
     }
 
-    // Gestion des téléchargements
     async function handleDownload(event, resourceName) {
       event.preventDefault();
       const targetUrl = event.currentTarget.href;
 
-      // Envoi du log au Discord sous forme d'Embed (plus pro)
       await sendToDiscord({
         embeds: [{
           title: "🚀 Nouveau Téléchargement",
           description: `Ressource : **${resourceName}**`,
-          color: 3869830, // Bleu
+          color: 3869830,
           timestamp: new Date()
         }]
       });
 
-      // Délai pour s'assurer que la requête est partie
       setTimeout(() => { window.location.href = targetUrl; }, 150);
     }
 
-    // Gestion du formulaire de retour
     document.getElementById('feedbackForm').onsubmit = async (e) => {
       e.preventDefault();
       const status = document.getElementById('status');
@@ -221,7 +223,7 @@
             { name: "Produit", value: name, inline: true },
             { name: "Commentaire", value: review }
           ],
-          color: 16766720, // Or
+          color: 16766720,
           timestamp: new Date()
         }]
       });
